@@ -1,0 +1,33 @@
+<h1>{{title}}</h1>
+<form #myForm="ngForm" (ngSubmit)= "onSubmit()">
+    <div *ngIf="myForm.submitted">
+        <span *ngIf="lastname.errors?.[('required')]">Le nom est requis</span>
+        <span *ngIf="lastname.errors?.['minlength']">Le nom doit comporter au moins 3 caractères</span>
+        <span *ngIf="lastname.errors?.['maxlength']">Le nom ne doit pas dépasser 15 caractères.</span>
+    </div>
+    <div *ngIf="myForm.submitted">
+        <span *ngIf="firstname.errors?.[('required')]">Le prenom est requis</span>
+        <span *ngIf="firstname.errors?.['minlength']">Le prenom doit comporter au moins 3 caractères</span>
+        <span *ngIf="firstname.errors?.['maxlength']">Le prenom ne doit pas dépasser 15 caractères.</span>
+    </div>
+    <div *ngIf="myForm.submitted">
+        <span *ngIf="mail.errors?.['required']">L'email est requis</span>
+        <span *ngIf="mail.errors?.['email']">L'email est invalide</span>
+    </div>
+    <div *ngIf="myForm.submitted">
+        <span *ngIf="password.errors?.[('required')] ">Le mot de passe est requis</span>
+    </div>
+    <fieldset>
+        <input id="lastname" name="lastname" type="text" placeholder="Nom" [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="3" maxlength="15"/>
+    </fieldset>
+    <fieldset>
+        <input id="firstname" name="firstname" type="text" placeholder="Prenom" [(ngModel)]="model.firstname" #firstname="ngModel" required minlength="3" maxlength="15"/>
+    </fieldset>
+    <fieldset>
+        <input id="mail" name="mail" type="text" placeholder="e-mail" [(ngModel)]="model.email" #mail="ngModel" required email/>
+    </fieldset>
+    <fieldset>
+        <input id="password" name="password" type="password" placeholder="Mot de passe" [(ngModel)]="model.password" #password="ngModel" required/>
+    </fieldset>
+    <button type="submit">Envoyer</button>
+</form>
